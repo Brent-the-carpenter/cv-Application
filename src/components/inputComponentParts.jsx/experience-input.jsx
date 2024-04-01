@@ -1,31 +1,20 @@
 import { useState } from "react";
-function Experience({ ExperienceState, setExperienceState, setJobs, jobs }) {
-  const [validationState, setValidationState] = useState({
-    title: "",
-    company: "",
-    dates: "",
-    description: "",
-  });
+import InputElement from "./inputElement";
 
-  const checkForEmptyFields = () => {
-    const newValidationState = { ...validationState };
-    let isValid = true;
-    for (const key in ExperienceState) {
-      if (ExperienceState[key] === "") {
-        newValidationState[key] = `${
-          key.charAt(0).toUpperCase() + key.slice(1)
-        } is required.`; // Set error message
-        isValid = false;
-      } else {
-        newValidationState[key] = ""; // No error
-      }
-    }
-    setValidationState(newValidationState);
-    return isValid;
-  };
-
-  const handleAddJob = () => {
-    if (!checkForEmptyFields()) return;
+function Experience({
+  ExperienceState,
+  setExperienceState,
+  setJobs,
+  jobs,
+  validationState,
+  setValidationState,
+  handleChange,
+  checkForEmptyFields,
+  getInputStyle,
+  className,
+}) {
+  const handleAddJob = (component = "experience") => {
+    if (!checkForEmptyFields(component, ExperienceState)) return;
     setJobs([...jobs, ExperienceState]);
     setExperienceState({
       title: "",
@@ -35,94 +24,64 @@ function Experience({ ExperienceState, setExperienceState, setJobs, jobs }) {
     });
     // Reset validation state for the next input
     setValidationState({
-      title: "",
-      company: "",
-      dates: "",
-      description: "",
+      ...validationState,
+      experience: {
+        title: "",
+        company: "",
+        dates: "",
+        description: "",
+      },
     });
   };
 
-  const handleChange = (key, value) => {
-    setExperienceState((prevState) => ({ ...prevState, [key]: value }));
-
-    setValidationState((prevState) => ({ ...prevState, [key]: "" }));
-  };
-
-  const getInputStyle = (fieldName) => ({
-    border: validationState[fieldName] ? "1px solid red" : "initial",
-  });
   return (
-    <div>
+    <div className={className}>
       <h1>Experience</h1>
-      <label htmlFor="title">Title</label>
-      <input
-        type="text"
-        id="title"
-        placeholder="Job Title"
+      <InputElement
+        nameOfState={"experience"}
+        label={"Job Title"}
+        type={"text"}
+        id={"title"}
+        placeholder={"Job Title"}
         value={ExperienceState.title}
-        onChange={(e) => handleChange("title", e.target.value)}
-        style={getInputStyle("title")}
-        aria-describedby={validationState.title ? "titleError" : undefined}
+        onChange={(e) => handleChange("experience", "title", e.target.value)}
+        style={getInputStyle("experience", "title")}
+        errorMessage={validationState.experience.title}
       />
-      {validationState.title && (
-        <div id="titleError" style={{ color: "red" }} aria-live="assertive">
-          {validationState.title}
-        </div>
-      )}
-
-      <label htmlFor="company">Company</label>
-      <input
-        type="text"
-        id="company"
-        placeholder="Company Name"
+      <InputElement
+        type={"text"}
+        label={"Company Name"}
+        id={"company"}
+        placeholder={"Company Name"}
         value={ExperienceState.company}
-        onChange={(e) => handleChange("company", e.target.value)}
-        style={getInputStyle("company")}
-        aria-describedby={validationState.company ? "companyError" : undefined}
+        onChange={(e) => handleChange("experience", "company", e.target.value)}
+        style={getInputStyle("experience", "company")}
+        errorMessage={validationState.experience.company}
       />
-      {validationState.company && (
-        <div id="companyError" style={{ color: "red" }} aria-live="assertive">
-          {validationState.company}
-        </div>
-      )}
-
-      <label htmlFor="dates">Dates</label>
-      <input
-        type="text"
-        id="dates"
-        placeholder="MM/YYYY - MM/YYYY"
+      <InputElement
+        type={"text"}
+        label={"Dates"}
+        id={"dates"}
+        placeholder={"MM/YYYY - MM/YYYY"}
         value={ExperienceState.dates}
-        onChange={(e) => handleChange("dates", e.target.value)}
-        style={getInputStyle("dates")}
-        aria-describedby={validationState.dates ? "datesError" : undefined}
+        onChange={(e) => handleChange("experience", "dates", e.target.value)}
+        style={getInputStyle("experience", "dates")}
+        errorMessage={validationState.experience.dates}
       />
-      {validationState.dates && (
-        <div id="datesError" style={{ color: "red" }} aria-live="assertive">
-          {validationState.dates}
-        </div>
-      )}
 
-      <label htmlFor="description">Description</label>
-      <textarea
-        id="description"
-        placeholder="Brief description of your responsibilities"
+      <InputElement
+        textarea={true}
+        label={"Description"}
+        id={"description"}
+        placeholder={"Brief description of your responsibilities"}
         value={ExperienceState.description}
-        onChange={(e) => handleChange("description", e.target.value)}
-        style={getInputStyle("description")}
-        aria-describedby={
-          validationState.description ? "descriptionError" : undefined
+        onChange={(e) =>
+          handleChange("experience", "description", e.target.value)
         }
+        style={getInputStyle("experience", "description")}
+        errorMessage={validationState.experience.description}
       />
-      {validationState.description && (
-        <div
-          id="descriptionError"
-          style={{ color: "red" }}
-          aria-live="assertive"
-        >
-          {validationState.description}
-        </div>
-      )}
-
+      <br />
       <button id="addJob" onClick={handleAddJob}>
         Add job
       </button>

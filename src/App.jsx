@@ -9,6 +9,7 @@ function App() {
   const [ExperienceState, setExperienceState] = useState({});
   const [generalState, setGeneralState] = useState({});
   const [jobs, setJobs] = useState([]);
+  const [schools, setSchools] = useState({});
   return (
     <div className="App">
       <InputComponent
@@ -20,6 +21,8 @@ function App() {
         setGeneralState={setGeneralState}
         setJobs={setJobs}
         jobs={jobs}
+        schools={schools}
+        setSchools={setSchools}
       />
       <ViewPort
         EducationState={EducationState}
