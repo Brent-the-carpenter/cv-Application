@@ -12,3 +12,4 @@ function education({ onChange, education }) {
     </div>
   );
 }
+export default education;

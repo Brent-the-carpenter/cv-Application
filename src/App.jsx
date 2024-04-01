@@ -5,14 +5,28 @@ import ViewPort from "./ViewPort";
 import "./App.css";
 
 function App() {
-  const [inputHandler, setinputHandler] = useState({});
+  const [EducationState, setEducationState] = useState({});
+  const [ExperienceState, setExperienceState] = useState({});
+  const [generalState, setGeneralState] = useState({});
+  const [jobs, setJobs] = useState([]);
   return (
     <div className="App">
       <InputComponent
-        inputHandler={inputHandler}
-        setinputHandler={setinputHandler}
+        EducationState={EducationState}
+        setEducationState={setEducationState}
+        ExperienceState={ExperienceState}
+        setExperienceState={setExperienceState}
+        generalState={generalState}
+        setGeneralState={setGeneralState}
+        setJobs={setJobs}
+        jobs={jobs}
       />
-      <ViewPort inputHandler={inputHandler} />
+      <ViewPort
+        EducationState={EducationState}
+        ExperienceState={ExperienceState}
+        generalState={generalState}
+        jobs={jobs}
+      />
     </div>
   );
 }
