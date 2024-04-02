@@ -1,4 +1,3 @@
-import { useState } from "react";
 import InputElement from "./inputElement";
 export default function Education({
   EducationState,
@@ -20,7 +19,7 @@ export default function Education({
       fieldOfStudy: "",
       dates: "",
     });
-    // Reset validation state for the next input
+
     setValidationState({
       ...validationState,
       education: {
@@ -37,7 +36,7 @@ export default function Education({
       <InputElement
         type={"text"}
         label={"School Name"}
-        id={EducationState.school}
+        id={"school"}
         placeholder={"School Name"}
         value={EducationState.school}
         onChange={(e) => handleChange("education", "school", e.target.value)}
@@ -47,7 +46,7 @@ export default function Education({
       <InputElement
         type={"text"}
         label={"field of study"}
-        id={EducationState.fieldOfStudy}
+        id={"field-of-study"}
         placeholder={"field of study"}
         value={EducationState.fieldOfStudy}
         onChange={(e) =>
@@ -59,7 +58,7 @@ export default function Education({
       <InputElement
         type={"text"}
         label={"dates"}
-        id={EducationState.dates}
+        id={"school-dates"}
         placeholder={"MM/YYYY - MM/YYYY"}
         value={EducationState.dates}
         onChange={(e) => handleChange("education", "dates", e.target.value)}

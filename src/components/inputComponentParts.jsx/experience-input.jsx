@@ -1,4 +1,3 @@
-import { useState } from "react";
 import InputElement from "./inputElement";
 
 function Experience({
@@ -22,7 +21,7 @@ function Experience({
       dates: "",
       description: "",
     });
-    // Reset validation state for the next input
+
     setValidationState({
       ...validationState,
       experience: {
@@ -51,7 +50,7 @@ function Experience({
       <InputElement
         type={"text"}
         label={"Company Name"}
-        id={"company"}
+        id={"name-of-company"}
         placeholder={"Company Name"}
         value={ExperienceState.company}
         onChange={(e) => handleChange("experience", "company", e.target.value)}
@@ -61,7 +60,7 @@ function Experience({
       <InputElement
         type={"text"}
         label={"Dates"}
-        id={"dates"}
+        id={"dates-employed"}
         placeholder={"MM/YYYY - MM/YYYY"}
         value={ExperienceState.dates}
         onChange={(e) => handleChange("experience", "dates", e.target.value)}
@@ -72,7 +71,7 @@ function Experience({
       <InputElement
         textarea={true}
         label={"Description"}
-        id={"description"}
+        id={"description-of-job"}
         placeholder={"Brief description of your responsibilities"}
         value={ExperienceState.description}
         onChange={(e) =>

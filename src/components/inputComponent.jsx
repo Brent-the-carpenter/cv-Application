@@ -1,6 +1,7 @@
+import { useState } from "react";
 import Experience from "./inputComponentParts.jsx/experience-input";
 import Education from "./inputComponentParts.jsx/education-input";
-
+import General from "./inputComponentParts.jsx/general-input";
 function InputComponent({
   EducationState,
   setEducationState,
@@ -29,17 +30,23 @@ function InputComponent({
       if (State[key] === "") {
         newValidationState[key] = `${
           key.charAt(0).toUpperCase() + key.slice(1)
-        } is required.`; // Set error message
+        } is required.`;
         isValid = false;
       } else {
-        newValidationState[key] = ""; // No error
+        newValidationState[key] = "";
       }
     }
     setValidationState({ [component]: newValidationState });
     return isValid;
   };
   const handleChange = (component, key, value) => {
-    setExperienceState((prevState) => ({ ...prevState, [key]: value }));
+    if (component === "experience") {
+      setExperienceState((prevState) => ({ ...prevState, [key]: value }));
+    } else if (component === "education") {
+      setEducationState((prevState) => ({ ...prevState, [key]: value }));
+    } else if (component === "general") {
+      setGeneralState((prevState) => ({ ...prevState, [key]: value }));
+    }
 
     setValidationState((prevState) => ({
       ...prevState,
@@ -52,6 +59,16 @@ function InputComponent({
   });
   return (
     <>
+      <General
+        className="general"
+        generalState={generalState}
+        setGeneralState={setGeneralState}
+        validationState={validationState}
+        setValidationState={setValidationState}
+        checkForEmptyFields={checkForEmptyFields}
+        handleChange={handleChange}
+        getInputStyle={getInputStyle}
+      />
       <Education
         className="education"
         EducationState={EducationState}
@@ -79,4 +96,4 @@ function InputComponent({
     </>
   );
 }
-export default { InputComponent };
+export default InputComponent;
