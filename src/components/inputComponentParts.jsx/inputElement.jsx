@@ -23,7 +23,7 @@ export default function InputElement({
     <>
       <label htmlFor={id}>{label}</label>
       {isTextArea ? (
-        <textarea {...commonProps} />
+        <textarea cols={30} rows={5} {...commonProps} />
       ) : (
         <input type={type} {...commonProps} />
       )}

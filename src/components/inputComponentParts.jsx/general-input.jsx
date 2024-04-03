@@ -1,5 +1,5 @@
 import InputElement from "./inputElement";
-
+import { useState } from "react";
 export default function General({
   className = "general",
   generalState,
@@ -9,11 +9,20 @@ export default function General({
   handleChange,
   getInputStyle,
 }) {
+  const [show, setShow] = useState(false);
+  const toggleShow = () => {
+    setShow(!show);
+  };
+  const hideClass = show ? "general" : "hide";
+
   return (
     <>
-      <div className={className}>
-        <h1>General</h1>
+      <h1 id="generalTag" onClick={toggleShow}>
+        General
+      </h1>
+      <div className={hideClass}>
         <InputElement
+          className={hideClass}
           type={"text"}
           label={"First Name"}
           id={"first-name"}
@@ -23,7 +32,9 @@ export default function General({
           style={getInputStyle("general", "firstName")}
           errorMessage={validationState.general.firstName}
         />
+        <br />
         <InputElement
+          className={hideClass}
           type={"text"}
           label={"Last Name"}
           id={"last-name"}
@@ -33,8 +44,10 @@ export default function General({
           style={getInputStyle("general", "lastName")}
           errorMessage={validationState.general.lastName}
         />
+        <br />
         <InputElement
-          type={"text"}
+          className={hideClass}
+          type={"email"}
           label={"Email"}
           id={"email"}
           placeholder={"Email"}
@@ -43,7 +56,9 @@ export default function General({
           style={getInputStyle("general", "email")}
           errorMessage={validationState.general.email}
         />
+        <br />
         <InputElement
+          className={hideClass}
           type={"telephone"}
           label={"Phone Number"}
           id={"phone-number"}
@@ -54,6 +69,18 @@ export default function General({
           }
           style={getInputStyle("general", "phoneNumber")}
           errorMessage={validationState.general.phoneNumber}
+        />
+        <br />
+        <InputElement
+          className={hideClass}
+          type={"text"}
+          label={"Location"}
+          id={"location"}
+          placeholder={"Location"}
+          value={generalState.location}
+          onChange={(e) => handleChange("general", "location", e.target.value)}
+          style={getInputStyle("general", "location")}
+          errorMessage={validationState.general.location}
         />
       </div>
     </>

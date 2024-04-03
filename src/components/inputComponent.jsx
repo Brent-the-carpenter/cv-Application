@@ -21,6 +21,18 @@ function InputComponent({
       dates: "",
       description: "",
     },
+    education: {
+      school: "",
+      fieldOfStudy: "",
+      dates: "",
+    },
+    general: {
+      firstName: "",
+      lastName: "",
+      email: "",
+      phone: "",
+      location: "",
+    },
   });
   const checkForEmptyFields = (component, State) => {
     let currentComponent = component;
@@ -55,10 +67,12 @@ function InputComponent({
   };
 
   const getInputStyle = (component, fieldName) => ({
-    border: validationState[component][fieldName] ? "1px solid red" : "initial",
+    border: validationState[component][fieldName]
+      ? "1px solid red"
+      : "1px solid black",
   });
   return (
-    <>
+    <div className="inputComponent">
       <General
         className="general"
         generalState={generalState}
@@ -93,7 +107,7 @@ function InputComponent({
         handleChange={handleChange}
         getInputStyle={getInputStyle}
       />
-    </>
+    </div>
   );
 }
 export default InputComponent;

@@ -1,15 +1,20 @@
-function ViewPort() {
+import General_Viewport from "./viewportComponentParts/general-viewport";
+import Education_ViewPort from "./viewportComponentParts/education-viewport";
+import Experience_ViewPort from "./viewportComponentParts/experience-viewport";
+function ViewPort({
+  EducationState,
+  ExperienceState,
+  generalState,
+  jobs,
+  schools,
+}) {
   return (
     <div className="viewport">
-      <header>
-        <h1 id="name"> Name </h1>
-        <div id="Email"> Email</div>
-        <div id="Phone"> Phone</div>
-        <div id="location"> Location</div>
-      </header>
+      <General_Viewport generalState={generalState} />
       <main>
-        <Education />
-        <Experience />
+        <Education_ViewPort schools={schools} EducationState={EducationState} />
+
+        <Experience_ViewPort jobs={jobs} ExperienceState={ExperienceState} />
       </main>
     </div>
   );
