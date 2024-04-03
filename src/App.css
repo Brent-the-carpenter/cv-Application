@@ -143,6 +143,16 @@ main {
   max-height: 500px; /* Adjust based on content */
   animation: show 300ms ease-in-out forwards;
 }
+#generalTag:hover,
+#generalTag:focus,
+#educationTag:hover,
+#educationTag:focus,
+#experienceTag:hover,
+#experienceTag:focus {
+  cursor: pointer;
+  transform: scale(1.05);
+  color: rgba(160, 160, 160, 1);
+}
 
 .hide {
   animation: hide 400ms ease-in-out forwards;

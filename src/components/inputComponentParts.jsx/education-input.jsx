@@ -36,7 +36,7 @@ export default function Education({
   };
   return (
     <>
-      <h1 className="educationTag" onClick={toggleShow}>
+      <h1 id="educationTag" onClick={toggleShow}>
         Education
       </h1>
       <div className={`${show ? "education" : "hide"} `}>

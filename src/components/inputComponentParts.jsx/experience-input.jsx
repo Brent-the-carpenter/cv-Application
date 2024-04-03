@@ -10,7 +10,6 @@ function Experience({
   handleChange,
   checkForEmptyFields,
   getInputStyle,
-  className,
 }) {
   const [show, setShow] = useState(false);
   const toggleShow = () => {
@@ -39,7 +38,7 @@ function Experience({
 
   return (
     <>
-      <h1 id="experinceTag" onClick={toggleShow}>
+      <h1 id="experienceTag" onClick={toggleShow}>
         Experience
       </h1>
       <div className={`${show ? "experience" : "hide"}`}>
