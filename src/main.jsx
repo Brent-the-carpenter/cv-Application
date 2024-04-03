@@ -5,7 +5,13 @@ import "./index.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <h1>CV App</h1>
+    <div className="logoWrapper">
+      <div>
+        <img className="logo" src="src/assets/cvLogo copy.png" alt="" />
+      </div>
+      <h1> App</h1>
+    </div>
+
     <App />
   </React.StrictMode>
 );
