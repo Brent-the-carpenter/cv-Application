@@ -1,5 +1,6 @@
 import { useState } from "react";
 import InputElement from "./inputElement";
+import "../../App.css";
 export default function Education({
   EducationState,
   setEducationState,
@@ -9,7 +10,7 @@ export default function Education({
   handleChange,
   getInputStyle,
   setSchools,
-  schools,
+  // schools,
 }) {
   const [show, setShow] = useState(false);
   const toggleShow = () => {

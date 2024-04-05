@@ -1,5 +1,6 @@
 import InputElement from "./inputElement";
 import { useState } from "react";
+import "../../App.css";
 export default function General({
   generalState,
   // setGeneralState,

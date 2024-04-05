@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import Experience from "./inputComponentParts.jsx/experience-input";
 import Education from "./inputComponentParts.jsx/education-input";
 import General from "./inputComponentParts.jsx/general-input";
+import "../App.css";
 function InputComponent({
   EducationState,
   setEducationState,

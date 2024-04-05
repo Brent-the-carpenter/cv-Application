@@ -1,3 +1,5 @@
+import "../../App.css";
+
 export default function General_Viewport({ generalState }) {
   return (
     <header>

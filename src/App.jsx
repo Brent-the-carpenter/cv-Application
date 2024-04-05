@@ -1,7 +1,9 @@
 import { useState } from "react";
 import InputComponent from "./components/inputComponent";
 import ViewPort from "./components/viewport";
-
+import themeImage from "./assets/theme-light-dark.svg";
+import enterFullscreen from "./assets/fullscreen.svg";
+import exitFullscreen from "./assets/fullscreen-exit.svg";
 import "./App.css";
 
 function App() {
@@ -41,7 +43,7 @@ function App() {
   return (
     <>
       <button className="theme-button" onClick={() => handleTheme()}>
-        <img src="src/assets/theme-light-dark.svg" alt="" />
+        <img src={themeImage} alt="" />
       </button>
       <div className={`screenButtons ${fullscreen ? "reposition" : ""} `}>
         <button
@@ -49,11 +51,7 @@ function App() {
           onClick={handleFullscreen}
         >
           <img
-            src={`${
-              fullscreen
-                ? "src/assets/fullscreen-enter.svg"
-                : "src/assets/fullscreen-exit.svg"
-            } `}
+            src={`${fullscreen ? enterFullscreen : exitFullscreen} `}
             alt=""
           />
         </button>

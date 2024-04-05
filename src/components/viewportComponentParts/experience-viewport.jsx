@@ -1,4 +1,5 @@
 import React from "react";
+import "../../App.css";
 export default function Experience_ViewPort({ ExperienceState, jobs }) {
   const { title, company, dates, description } = ExperienceState;
   return (

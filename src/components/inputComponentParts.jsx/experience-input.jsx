@@ -1,10 +1,11 @@
 import InputElement from "./inputElement";
 import { useState } from "react";
+import "../../App.css";
 function Experience({
   ExperienceState,
   setExperienceState,
   setJobs,
-  jobs,
+  // jobs,
   validationState,
   setValidationState,
   handleChange,

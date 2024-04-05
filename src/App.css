@@ -9,7 +9,7 @@
   position: absolute;
   top: 80px;
   right: 20px;
-  background-image: url(src/assets/theme-light-dark.svg);
+  background-image: url(./assets/theme-light-dark.svg);
   background-color: var(--svg-background);
 }
 .screenButtons {
@@ -25,13 +25,13 @@
 }
 
 .fullscreen-enter {
-  background-image: url(src/assets/fullscreen.svg);
+  background-image: url(./assets/fullscreen.svg);
   background-color: var(--svg-background);
   z-index: 1001;
 }
 
 .fullscreen-exit {
-  background-image: url(src/assets/fullscreen-exit.svg);
+  background-image: url(./assets/fullscreen-exit.svg);
   background-color: var(--svg-background);
   z-index: 1001;
   position: relative;
@@ -216,7 +216,7 @@ main {
   .theme-button {
     top: 10px;
     right: 10px;
-    background-image: url(src/assets/theme-light-dark.svg);
+    background-image: url(./assets/theme-light-dark.svg);
     background-color: var(--svg-background);
 
     background-size: cover;

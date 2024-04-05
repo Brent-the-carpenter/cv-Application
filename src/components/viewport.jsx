@@ -1,6 +1,7 @@
 import General_Viewport from "./viewportComponentParts/general-viewport";
 import Education_ViewPort from "./viewportComponentParts/education-viewport";
 import Experience_ViewPort from "./viewportComponentParts/experience-viewport";
+import "../App.css";
 function ViewPort({
   EducationState,
   ExperienceState,
