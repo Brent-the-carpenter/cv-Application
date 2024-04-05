@@ -5,6 +5,7 @@ import ViewPort from "./components/viewport";
 import "./App.css";
 
 function App() {
+  const [theme, setTheme] = useState(false);
   const [EducationState, setEducationState] = useState({
     school: "",
     fieldOfStudy: "",
@@ -25,30 +26,64 @@ function App() {
   });
   const [jobs, setJobs] = useState([]);
   const [schools, setSchools] = useState([]);
+  const [fullscreen, setFullscreen] = useState(false);
+
+  function handleTheme() {
+    const newTheme = theme === "light" ? "dark" : "light";
+    document.body.classList.add(`${newTheme}-theme`);
+    document.body.classList.remove(`${theme}-theme`);
+    setTheme(newTheme);
+  }
+  const handleFullscreen = () => {
+    setFullscreen(!fullscreen);
+  };
+
   return (
-    <div className="App">
-      <InputComponent
-        className="inputComponent"
-        EducationState={EducationState}
-        setEducationState={setEducationState}
-        ExperienceState={ExperienceState}
-        setExperienceState={setExperienceState}
-        generalState={generalState}
-        setGeneralState={setGeneralState}
-        setJobs={setJobs}
-        jobs={jobs}
-        schools={schools}
-        setSchools={setSchools}
-      />
-      <ViewPort
-        className="viewPort"
-        EducationState={EducationState}
-        ExperienceState={ExperienceState}
-        generalState={generalState}
-        jobs={jobs}
-        schools={schools}
-      />
-    </div>
+    <>
+      <button className="theme-button" onClick={() => handleTheme()}>
+        <img src="src/assets/theme-light-dark.svg" alt="" />
+      </button>
+      <div className={`screenButtons ${fullscreen ? "reposition" : ""} `}>
+        <button
+          className={`${fullscreen ? "fullscreen-exit" : "fullscreen-enter "} `}
+          onClick={handleFullscreen}
+        >
+          <img
+            src={`${
+              fullscreen
+                ? "src/assets/fullscreen-enter.svg"
+                : "src/assets/fullscreen-exit.svg"
+            } `}
+            alt=""
+          />
+        </button>
+      </div>
+      <div className={`App light-theme ${fullscreen ? "App-fullview" : ""}`}>
+        <InputComponent
+          className={`inputComponent ${
+            fullscreen ? "hide-other-components" : ""
+          }`}
+          EducationState={EducationState}
+          setEducationState={setEducationState}
+          ExperienceState={ExperienceState}
+          setExperienceState={setExperienceState}
+          generalState={generalState}
+          setGeneralState={setGeneralState}
+          setJobs={setJobs}
+          jobs={jobs}
+          schools={schools}
+          setSchools={setSchools}
+        />
+        <ViewPort
+          className={`viewport ${fullscreen ? "viewport-fullview " : ""}`}
+          EducationState={EducationState}
+          ExperienceState={ExperienceState}
+          generalState={generalState}
+          jobs={jobs}
+          schools={schools}
+        />
+      </div>
+    </>
   );
 }
 

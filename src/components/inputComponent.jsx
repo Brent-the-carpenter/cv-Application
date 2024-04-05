@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Experience from "./inputComponentParts.jsx/experience-input";
 import Education from "./inputComponentParts.jsx/education-input";
 import General from "./inputComponentParts.jsx/general-input";
@@ -13,6 +13,7 @@ function InputComponent({
   jobs,
   setSchools,
   schools,
+  className,
 }) {
   const [validationState, setValidationState] = useState({
     experience: {
@@ -34,23 +35,36 @@ function InputComponent({
       location: "",
     },
   });
+  useEffect(() => {
+    console.log(validationState);
+  }, [validationState]);
+
   const checkForEmptyFields = (component, State) => {
-    let currentComponent = component;
-    const newValidationState = { ...validationState[currentComponent] };
     let isValid = true;
+    const newValidationStateForComponent = {};
+    console.log("component", component);
     for (const key in State) {
       if (State[key] === "") {
-        newValidationState[key] = `${
+        newValidationStateForComponent[key] = `${
           key.charAt(0).toUpperCase() + key.slice(1)
         } is required.`;
         isValid = false;
       } else {
-        newValidationState[key] = "";
+        newValidationStateForComponent[key] = "";
       }
     }
-    setValidationState({ [component]: newValidationState });
+
+    setValidationState((prevState) => ({
+      ...prevState,
+      [component]: {
+        ...prevState[component],
+        ...newValidationStateForComponent,
+      },
+    }));
+
     return isValid;
   };
+
   const handleChange = (component, key, value) => {
     if (component === "experience") {
       setExperienceState((prevState) => ({ ...prevState, [key]: value }));
@@ -62,17 +76,21 @@ function InputComponent({
 
     setValidationState((prevState) => ({
       ...prevState,
-      [component]: { ...prevState[component], [key]: "" },
     }));
   };
 
-  const getInputStyle = (component, fieldName) => ({
-    border: validationState[component][fieldName]
-      ? "1px solid red"
-      : "1px solid black",
-  });
+  const getInputStyle = (component, fieldName) => {
+    const isInvalid =
+      validationState[component][fieldName] ===
+      validationState[component][fieldName]?.includes("required");
+
+    return {
+      border: isInvalid ? "1px solid red" : "1px solid black",
+    };
+  };
+
   return (
-    <div className="inputComponent">
+    <div className={className}>
       <General
         className="general"
         generalState={generalState}

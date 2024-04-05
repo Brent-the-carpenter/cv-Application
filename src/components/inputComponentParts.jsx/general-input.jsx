@@ -1,7 +1,6 @@
 import InputElement from "./inputElement";
 import { useState } from "react";
 export default function General({
-  className = "general",
   generalState,
   // setGeneralState,
   validationState,
@@ -9,6 +8,7 @@ export default function General({
   handleChange,
   getInputStyle,
 }) {
+  console.log("Validation State:", validationState);
   const [show, setShow] = useState(false);
   const toggleShow = () => {
     setShow(!show);
@@ -67,7 +67,7 @@ export default function General({
           onChange={(e) =>
             handleChange("general", "phoneNumber", e.target.value)
           }
-          style={getInputStyle("general", "phoneNumber")}
+          style={getInputStyle("general", "phone")}
           errorMessage={validationState.general.phoneNumber}
         />
         <br />

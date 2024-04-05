@@ -1,3 +1,4 @@
+import React from "react";
 export default function Education_ViewPort({ schools, EducationState }) {
   const { school, fieldOfStudy, dates } = EducationState;
   return (
@@ -6,15 +7,17 @@ export default function Education_ViewPort({ schools, EducationState }) {
       <div className="education-view">
         {schools.map((schoolItem) => {
           return (
-            <ul key={schoolItem.id}>
-              <h3>{`Name of school: ${schoolItem.school}`}</h3>
-              <li>
-                <p>{`Field of study : ${schoolItem.fieldOfStudy}`}</p>
-              </li>
-              <li>
-                <p>{`Dates attened: ${schoolItem.dates}`}</p>
-              </li>
-            </ul>
+            <React.Fragment key={schoolItem.id}>
+              <ul>
+                <h3>{` ${schoolItem.school}`}</h3>
+                <li>
+                  <p>{`Field of study : ${schoolItem.fieldOfStudy}`}</p>
+                </li>
+                <li>
+                  <p>{`Dates attened: ${schoolItem.dates}`}</p>
+                </li>
+              </ul>
+            </React.Fragment>
           );
         })}
         {(school || fieldOfStudy || dates) && (

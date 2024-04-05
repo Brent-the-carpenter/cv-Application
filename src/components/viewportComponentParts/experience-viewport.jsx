@@ -1,3 +1,4 @@
+import React from "react";
 export default function Experience_ViewPort({ ExperienceState, jobs }) {
   const { title, company, dates, description } = ExperienceState;
   return (
@@ -7,14 +8,14 @@ export default function Experience_ViewPort({ ExperienceState, jobs }) {
         <ul>
           {jobs.map((job) => {
             return (
-              <>
+              <React.Fragment key={job.id}>
                 <h2>{job.company}</h2>
-                <li key={job.id}>
+                <li>
                   <h3>{`Job Title: ${job.title}`}</h3>
                   <p>{` Dates Employed :${job.dates}`}</p>
                   <p className="text-area">{job.description}</p>
                 </li>
-              </>
+              </React.Fragment>
             );
           })}
           {title || company || dates || description ? (

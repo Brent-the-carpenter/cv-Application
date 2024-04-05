@@ -16,23 +16,31 @@ export default function Education({
     setShow(!show);
   };
   const handleAddSchool = (component = "education") => {
-    if (!checkForEmptyFields(component, EducationState)) return;
+    if (!checkForEmptyFields(component, EducationState)) {
+      console.log(
+        "Validation state after checkForEmptyFields education",
+        validationState
+      );
+      return;
+    }
+
     const newSchool = { ...EducationState, id: Date.now() };
-    setSchools([...schools, newSchool]);
+    setSchools((prevSchools) => [...prevSchools, newSchool]);
+
     setEducationState({
       school: "",
       fieldOfStudy: "",
       dates: "",
     });
 
-    setValidationState({
-      ...validationState,
+    setValidationState((prevState) => ({
+      ...prevState,
       education: {
         school: "",
         fieldOfStudy: "",
         dates: "",
       },
-    });
+    }));
   };
   return (
     <>

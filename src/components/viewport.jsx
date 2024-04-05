@@ -7,9 +7,10 @@ function ViewPort({
   generalState,
   jobs,
   schools,
+  className,
 }) {
   return (
-    <div className="viewport">
+    <div className={className}>
       <General_Viewport generalState={generalState} />
       <main>
         <Education_ViewPort schools={schools} EducationState={EducationState} />

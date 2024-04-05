@@ -16,8 +16,12 @@ function Experience({
     setShow(!show);
   };
   const handleAddJob = (component = "experience") => {
-    if (!checkForEmptyFields(component, ExperienceState)) return;
-    setJobs([...jobs, ExperienceState]);
+    console.log("Current State for validation:", ExperienceState);
+    if (!checkForEmptyFields(component, ExperienceState)) {
+      return;
+    }
+
+    setJobs((prevJobs) => [...prevJobs, ExperienceState]);
     setExperienceState({
       title: "",
       company: "",
@@ -25,15 +29,15 @@ function Experience({
       description: "",
     });
 
-    setValidationState({
-      ...validationState,
-      experience: {
+    setValidationState((prevState) => ({
+      ...prevState,
+      [component]: {
         title: "",
         company: "",
         dates: "",
         description: "",
       },
-    });
+    }));
   };
 
   return (
@@ -89,7 +93,7 @@ function Experience({
           errorMessage={validationState.experience.description}
         />
         <br />
-        <button id="addJob" onClick={handleAddJob}>
+        <button id="addJob" onClick={() => handleAddJob()}>
           Add job
         </button>
       </div>
